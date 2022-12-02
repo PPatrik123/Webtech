@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Single Page website</title>
+    <!--Outer css-->
+    <link rel="stylesheet" href="style/style.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+    <!-- Jquery and bootstrap js-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body{
+            background-color: rgb(27, 27, 27);
+            margin: 20px;
+        }
+        body > p, h1, h3, footer, label {
+            color:white;
+        }
+        #cmInput > label , input{ 
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+        form span{
+            color:red;
+        }
+    </style>
+
+</head>
+<body>
+  <a href="Mean.html">
+    <h1 class="text-center"> Autók </h1>
+  </a>
+    <p class="titleP">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur totam magnam voluptatum, quae odio repellat libero accusantium ipsa accusamus minus tempore dolores dolorem quasi vero atque natus cumque quis soluta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi saepe laborum quo quibusdam. Laborum voluptatum facilis rerum et est! Incidunt nam deserunt, molestias eum aliquam distinctio minima ratione itaque iusto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus atque perspiciatis quaerat aut quisquam voluptatum sequi? Saepe adipisci qui consequuntur aliquid vitae laboriosam culpa dolores ab in sapiente. Sapiente, eum.</p>
+
+    <div id="car_events" class="container-fluid text-center" style=" height: 600px;">
+      <a href="https://www.gt40.com/">
+        <div class="zoom" name="imgDiv" style="float: left; margin-left: 130px; "> 
+            <img src="resources/Everrati 12-07-21 (8 of 16).jpg" alt="GT40"/>
+        </div>
+      </a>
+      <a href="kl.html">
+        <div class="zoom" name="imgDiv" style="float: right; margin-right: 130px; ">
+            <img src="resources/IMG_4063.jpg" alt="Lada 2105"/>
+        </div>
+      </a>
+    </div>
+
+    <div class="input-group">
+        <button type="button" class="btn bg-success rounded" data-bs-toggle="modal" data-bs-target="#addItemModal">Add New Item</button>
+        <div class="form-outline">
+          <input id="textFilterInput" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"aria-describedby="search-addon" style="margin-left: 20px;" />
+        </div>
+      </div>
+    <table id="carTable" class="table table-responsive-md" >
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Manufacturer</th>
+            <th>Weight</th>
+            <th>Liters</th>
+            <th>Liter in CM3</th>
+            <th>HP</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td>Lada 2105</td>
+            <td>VAZ</td>
+            <td>1200</td>
+            <td>1,5</td>
+            <td>1500</td>
+            <td>65</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="width: 30%; margin: 50px;">
+        <h3 style="text-align: center;">Enter something</h3>
+         <form>
+              <!--name-->
+              <div class="form-item">
+                <label for="Name">name: </label>
+                <input id="Name" type="text" class="form-control" required>
+              </div>
+              <!--email-->
+              <div class="form-item">
+                <label for="email">Email: </label>
+                <input id="email" type="email" class="form-control" required>
+              </div>
+              <!--birth date-->
+              <div class="form-item">
+                <label for="Bdate">Birth date:(1999-05-15) </label>
+                <input id="Bdate" type="date" class="form-control" required>
+              </div>
+
+         </form>
+         <button id="enterName" type="button" class="btn btn-info rounded" style="margin: 10px;" onclick="enterName()">Enter</button>
+         <div id = "alertId" class="alert hidden"></div>
+         <h3>Entered Names:</p>
+         <ul id="enteredNames" style="color:wheat"></ul>
+      </div>
+
+
+      <!-- Add New Item Modal -->
+    <div class="modal fade" id="addItemModal" >
+        <div class="modal-dialog">
+        <div class="modal-content modal-theme">
+            <!-- Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Add a new item to the table</h4>
+            <button type="button" class="btn btn-close bg-light" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- body -->
+            <div class="modal-body" style="padding:30px;" >
+            <form>
+                <!--Name-->
+                <div class="form-item">
+                <label for="type"style="color :Blue">Type: </label>
+                <span id="typeCheck" >**Type is missing </span>
+                <input id="type" type="text" class="form-control" required>
+                </div>
+                <!--Manufacturer-->
+                <div class="form-item">
+                <label for="Manufacturer"style="color :Blue">Manufacturer:</label>
+                <span id="ManufacturerCheck" >**Manufacturer is missing </span>
+                <select id="Manufacturer" class="form-select" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Vaz</option>
+                    <option>Ford</option>
+                    <option>Toyota</option>
+                    <option>Nissan</option>
+                    <option>Suzuki</option>
+                    <option>BMW</option>
+                    <option>Audi</option>
+                    <option>Porsche</option>
+                    <option>Volkswagen</option>
+                </select>
+                </div>
+                
+                <!--Weight-->
+                <div class="form-item">
+                <label for="weight"style="color :Blue">Weight:</label>
+                <span id="weightCheck" >**Weight is missing </span>
+                <input id="weight" type="number" min=1 max=6000 class="form-control" required>
+                </div>
+                <!--HP-->
+                <div class="form-item">
+                  <label for="HP"style="color :Blue">HP:</label>
+                  <span id="HPCheck" >**HP is missing </span>
+                  <input id="HP" type="number" min=1 max=1000 class="form-control" required>
+                  </div>
+                <!--CM-->
+                <div class="form-item">
+                <label for="cmSlider"style="color :Blue" class="form-label">Age:</label>
+                <span id="cmCheck" >**Cm3 can't be zero </span>
+                <div id="cmInput" class="input-group form-item">
+                    <label for="cmSlider"style="color :Blue" class="form-label">Liters: </label>
+                    <input id="cmTextNormal" type="number" class="form-control" value="0" min=0 max=5 required>
+                    <label for="cmSlider" style="color :Blue"class="form-label">Cm3: </label>
+                    <input id="cmTextliters" type="number" class="form-control" value="0" min=1 max=5000 required>
+                </div>
+                <input type="range" class="form-range" id="cmSlider" value="0" min="1" max="5" step="1">
+                </div>
+                <!--Buttons-->
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button id="addItemBtn" type="button" class="btn btn-primary">Add Item</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <footer>
+        <h6>Contact:</h6>
+        <p><a href="con.html" target="">Here!</a></p>
+        
+        <p>The website was made by Palkó Patrik Dávid </br>2022</p>
+    </footer>
+
+    <script src="scripts/imgZoom.js"></script>
+    <script src="scripts/textFilter.js"></script>
+    <script src="scripts/cmSlider.js"></script>
+    <script src="scripts/insertNewLine.js"></script>
+    <script src="scripts/enterNameForm.js"></script>
+</body>
+</html>
